@@ -85,7 +85,7 @@ extcoff: $(TARGET).elf
 .elf.sym:
 	$(NM) -n $< > $@
 
-$(TARGET).elf: $(TARGET)
+$(TARGET).elf: $(TARGET).o
 	@echo "Preparing."
 	@$(CC) $(ALL_CFLAGS) -o $@ $(TARGET).c -L. $(LDFLAGS)
 
@@ -114,7 +114,7 @@ clean:
 	@echo "Cleaning up."
 	@$(RM) $(TARGET).hex $(TARGET).eep $(TARGET).cof \
 	@$(TARGET).map $(TARGET).elf $(TARGET).sym \
-	@$(TARGET).lss $(TARGET) \
+	@$(TARGET).lss $(TARGET).o \
 	@$(OBJ) $(LST) $(SRC:.c=.s) $(SRC:.c=.d) $(CXXSRC:.cpp=.s) $(CXXSRC:.cpp=.d)
 
 depend:
